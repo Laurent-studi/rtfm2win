@@ -23,8 +23,8 @@ Une application web de quiz interactif multijoueur permettant de créer et de pa
 
 1. Cloner le repository :
 ```bash
-git clone https://github.com/votre-username/quiz-interactif.git
-cd quiz-interactif
+git clone https://github.com/Laurent-studi/rtfm2win/
+cd rtfm2win
 ```
 
 2. Installer les dépendances :
@@ -40,23 +40,6 @@ composer install
 4. Configurer le serveur web :
 - Pointer le document root vers le dossier `public`
 - Assurer que le mod_rewrite est activé (Apache)
-
-## Structure du projet
-
-```
-quiz-interactif/
-├── public/              # Point d'entrée public
-│   ├── css/            # Styles CSS
-│   ├── js/             # Scripts JavaScript
-│   └── images/         # Images et avatars
-├── src/                # Code source
-│   ├── Config/         # Configuration
-│   ├── Controllers/    # Contrôleurs
-│   ├── Models/         # Modèles
-│   ├── Utils/          # Utilitaires
-│   └── Views/          # Vues
-└── database/           # Schéma et migrations
-```
 
 ## Utilisation
 
