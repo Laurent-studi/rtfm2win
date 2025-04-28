@@ -11,7 +11,7 @@ $dotenv->load();
 //configuration de la connexion à la base de données
 $config = [
     'host' => $_ENV['DB_HOST'], // Adresse du serveur de base de données
-    'port' => $_ENV['DB_PORT'], // Port par défaut pour MariaDb
+    'port' => $_ENV['DB_PORT'], // Port par défaut
     'database' => $_ENV['DB_DATABASE'], // Nom de la base de données
     'username' => $_ENV['DB_USERNAME'], // Nom d'utilisateur
     'password' => $_ENV['DB_PASSWORD'], // Mot de passe
