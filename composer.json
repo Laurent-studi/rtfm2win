@@ -1,0 +1,28 @@
+{
+  "name": "votre-vendor/rtfm2win",
+  "description": "Jeu de questions avec scoring",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": "^8.0",
+    "ext-pdo": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rtfm2win\\Admin\\": "admin/",
+      "Rtfm2win\\Api\\":   "api/",
+      "Rtfm2win\\Pages\\": "pages/",
+      "Rtfm2win\\":        "classes/"
+    }
+  },
+
+  "scripts": {
+    "test": "phpunit --colors=always",
+    "serve": "php -S localhost:8000"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
