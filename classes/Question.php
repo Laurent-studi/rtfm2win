@@ -1,12 +1,8 @@
 <?php
-
-namespace Rtfm2win;
-
 // Déclaration d'encodage UTF-8
 header('Content-Type: text/html; charset=utf-8');
 
-class Question
-{
+class Question {
     //-----------------------Attributs--------------------------
 
     private string $prompt;
@@ -14,24 +10,21 @@ class Question
 
     //-----------------------Accesseurs--------------------------
 
-    public function getPrompt()
-    {
+    public function getPrompt(){
         return $this -> prompt;
     }
 
-    public function getNbCorrect()
-    {
+    public function getNbCorrect(){
         return $this -> nbCorrect;
     }
     //-----------------------Mutateurs--------------------------
 
-    public function setPrompt(string $prompt)
-    {
+    public function setPrompt(string $prompt){
         $this -> prompt = $prompt;
     }
 
-    public function setNbCorrect(int $nbCorrect)
-    {
+    public function setNbCorrect(int $nbCorrect){
         $this -> nbCorrect = $nbCorrect;
     }
 }
+
