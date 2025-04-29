@@ -28,7 +28,7 @@ try {
 
 
 include_once 'pages/index.html';
-// test-Autoload et test-namespace
+//test-Autoload et test-namespace
 //use Rtfm2win\User;
 //$usertest = new User();
 //$usertest->setUserName('test');
