@@ -1,8 +1,12 @@
 <?php
+
+namespace Rtfm2win;
+
 // Déclaration d'encodage UTF-8
 header('Content-Type: text/html; charset=utf-8');
 
-class Quiz {
+class Quiz
+{
     //-----------------------Attributs--------------------------
     private string $title;
     private string $link;
@@ -13,62 +17,75 @@ class Quiz {
     private float $timeDeduction;  //Nécessaire? pas noter modifiable dans le CDC !!
 
     //-----------------------Accesseurs--------------------------
-    public function getTitle(){
+    public function getTitle()
+    {
         return $this -> title;
     }
 
-    public function getlink(){
+    public function getlink()
+    {
         return $this -> link;
     }
 
-    public function getqrCode(){
+    public function getqrCode()
+    {
         return $this -> qrCode;
     }
 
-    public function getCreatedAt(){
+    public function getCreatedAt()
+    {
         return $this -> createdAt;
     }
 
-    public function getBasePoints(){
+    public function getBasePoints()
+    {
         return $this -> basePoints;
     }
 
-    public function getSplitPoints(){
+    public function getSplitPoints()
+    {
         return $this -> splitPoints;
     }
 
-    public function getTimeDeduction(){
+    public function getTimeDeduction()
+    {
         return $this -> timeDeduction;
     }
 
     //-----------------------Mutateurs--------------------------
 
-    public function setTitle(string $title){
+    public function setTitle(string $title)
+    {
         $this -> title = $title;
     }
 
-    public function setlink(string $link){
+    public function setlink(string $link)
+    {
         $this -> link = $link;
     }
 
-    public function setqrCode(string $qrCode){
+    public function setqrCode(string $qrCode)
+    {
         $this -> qrCode = $qrCode;
     }
 
-    public function setCreatedAt(DateTime $createdAt){
+    public function setCreatedAt(DateTime $createdAt)
+    {
         $this -> createdAt = $createdAt;
     }
 
-    public function setBasePoints(int $basePoints){
+    public function setBasePoints(int $basePoints)
+    {
         $this -> basePoints = $basePoints;
     }
 
-    public function setSplitPoints(bool $splitPoints){
+    public function setSplitPoints(bool $splitPoints)
+    {
         $this -> splitPoints = $splitPoints;
     }
 
-    public function setTimeDeduction(float $timeDeduction){
+    public function setTimeDeduction(float $timeDeduction)
+    {
         $this -> timeDeduction = $timeDeduction;
     }
 }
-

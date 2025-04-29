@@ -1,11 +1,11 @@
 <?php
 
-// Activer l'affichage des erreurs pour le débogage
+// Activer l'affichage des erreurs pour le débogage <- a retirer en prod
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Connexion et chargement de  l'autoloader de Composer
+// Connexion et chargement de  l'autoloader de Composer + gestion erreur
 try {
     $autoload = require_once __DIR__ . '/vendor/autoload.php';
     if (!$autoload) {
@@ -16,7 +16,7 @@ try {
 }
 
 
-// Connexion à la base de données
+// Connexion à la base de données + gestion erreur
 try {
     $pdo = require_once 'config/database.php';
     if (!$pdo) {
@@ -28,6 +28,8 @@ try {
 
 
 include_once 'pages/index.html';
+
+// Test des classes
 //test-Autoload et test-namespace
 //use Rtfm2win\User;
 //$usertest = new User();
