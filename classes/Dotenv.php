@@ -1,6 +1,6 @@
 <?php
 
-namespace Rtfm2Win\Classes;
+namespace Rtfm2win;
 
 class Dotenv {
     private string $path;
@@ -17,7 +17,7 @@ class Dotenv {
         $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         foreach ($lines as $line) {
             if (str_starts_with(trim($line), '#')) {
-                continue; // Ignorer les commentaires
+                continue;
             }
 
             [$name, $value] = explode('=', $line, 2);

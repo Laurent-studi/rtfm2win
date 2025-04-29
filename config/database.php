@@ -1,6 +1,6 @@
 <?php
 
-namespace Rtfm2Win\Config;
+namespace Rtfm2win\config;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -24,6 +24,11 @@ try {
     $dotenv->load();
 } catch (\Exception $e) {
     die("Erreur : " . $e->getMessage());
+}
+
+// Vérifiez que les variables d'environnement sont chargées
+if (empty($_ENV['DB_HOST']) || empty($_ENV['DB_DATABASE'])) {
+    die("Erreur : Les variables d'environnement nécessaires ne sont pas chargées correctement.");
 }
 
 // Vérification des variables d'environnement nécessaires
@@ -57,9 +62,8 @@ try {
     $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['database']};charset={$config['charset']}";
     $pdo = new PDO($dsn, $config['username'], $config['password'], $config['options']);
 } catch (PDOException $e) {
-    die("Erreur de connexion à la base de données : " . $e->getMessage() . 
+    die("Erreur de connexion à la base de données : " . $e->getMessage() .
         " (Code : " . $e->getCode() . ")");
 }
 
 return $pdo;
-

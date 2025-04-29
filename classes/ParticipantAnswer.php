@@ -1,8 +1,12 @@
 <?php
+
+namespace Rtfm2win;
+
 // Déclaration d'encodage UTF-8
 header('Content-Type: text/html; charset=utf-8');
 
-class participantAnswers{
+class ParticipantAnswer
+{
     //-----------------------Attributs--------------------------
 
     private int $reponseTime;
@@ -10,21 +14,25 @@ class participantAnswers{
 
     //-----------------------Accesseurs--------------------------
 
-    public function getReponseTime(){
+    public function getReponseTime()
+    {
         return $this -> reponseTime;
     }
 
-    public function getPointEarned(){
+    public function getPointEarned()
+    {
         return $this -> pointsEarned;
     }
 
     //-----------------------Mutateurs--------------------------
 
-    public function setReponseTime(int $reponseTime){
+    public function setReponseTime(int $reponseTime)
+    {
         $this -> reponseTime = $reponseTime;
     }
 
-    public function setPointEarned(int $pointsEarned){
+    public function setPointEarned(int $pointsEarned)
+    {
         $this -> pointsEarned = $pointsEarned;
     }
 }

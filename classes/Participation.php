@@ -1,8 +1,13 @@
 <?php
-// Déclaration d'encodage UTF-8
+
+namespace Rtfm2win;
+
+use DateTime;
+
 header('Content-Type: text/html; charset=utf-8');
 
-class participations {
+class Participation
+{
     //-----------------------Attributs--------------------------
 
     private DateTime $participationDate;
@@ -13,46 +18,55 @@ class participations {
 
     //-----------------------Accesseurs--------------------------
 
-    public function getParticipationDate(){
+    public function getParticipationDate()
+    {
         return $this -> participationDate;
     }
 
-    public function getEndDateParticipation(){
+    public function getEndDateParticipation()
+    {
         return $this -> endDateParticipation;
     }
 
-    public function getTotalScore(){
+    public function getTotalScore()
+    {
         return $this -> totalScore;
     }
 
-    public function getRankPosition(){
+    public function getRankPosition()
+    {
         return $this -> rankPosition;
     }
 
-    public function getParticipationActive(){
+    public function getParticipationActive()
+    {
         return $this -> participationActive;
     }
 
     //-----------------------Mutateurs--------------------------
 
-    public function setParticipationDate(DateTime $participationDate){
+    public function setParticipationDate(DateTime $participationDate)
+    {
         $this -> participationDate = $participationDate;
     }
 
-    public function setEndDateParticipation(DateTime $endDateParticipation){
+    public function setEndDateParticipation(DateTime $endDateParticipation)
+    {
         $this -> endDateParticipation = $endDateParticipation;
     }
 
-    public function setTotalScore(float $totalScore){
+    public function setTotalScore(float $totalScore)
+    {
         $this -> totalScore = $totalScore;
     }
 
-    public function setRankPosition(int $rankPosition){
+    public function setRankPosition(int $rankPosition)
+    {
         $this -> rankPosition = $rankPosition;
     }
 
-    public function setParticipationActive(bool $participationActive){
+    public function setParticipationActive(bool $participationActive)
+    {
         $this -> participationActive = $participationActive;
     }
 }
-

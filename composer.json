@@ -12,7 +12,7 @@
     "phpunit/phpunit": "^10.0"
   },
   "autoload": {
-    "psr-12": {
+    "psr-4": {
       "Rtfm2win\\Admin\\": "admin/",
       "Rtfm2win\\Api\\":   "api/",
       "Rtfm2win\\Pages\\": "pages/",

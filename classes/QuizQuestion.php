@@ -1,8 +1,12 @@
 <?php
+
+namespace Rtfm2win;
+
 // Déclaration d'encodage UTF-8
 header('Content-Type: text/html; charset=utf-8');
 
-class quizQuestions {
+class QuizQuestion
+{
     //-----------------------Attributs--------------------------
 
     private int $maxTime = 30;
@@ -10,22 +14,25 @@ class quizQuestions {
 
     //-----------------------Accesseurs--------------------------
 
-    public function getMaxTime(){
+    public function getMaxTime()
+    {
         return $this -> maxTime;
     }
 
-    public function getSeqOrder(){
+    public function getSeqOrder()
+    {
         return $this -> seqOrder;
     }
 
     //-----------------------Mutateurs--------------------------
 
-    public function setMaxTime(int $maxTime){
+    public function setMaxTime(int $maxTime)
+    {
         $this -> maxTime = $maxTime;
     }
 
-    public function setSeqOrder(int $seqOrder){
+    public function setSeqOrder(int $seqOrder)
+    {
         $this -> seqOrder = $seqOrder;
     }
 }
-

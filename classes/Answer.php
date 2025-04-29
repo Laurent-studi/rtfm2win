@@ -1,8 +1,11 @@
 <?php
-// Déclaration d'encodage UTF-8
+
+namespace Rtfm2win;
+
 header('Content-Type: text/html; charset=utf-8');
 
-class answers {
+class Answer
+{
     //-----------------------Attributs--------------------------
 
     private string $text;
@@ -10,22 +13,25 @@ class answers {
 
     //-----------------------Accesseurs--------------------------
 
-    public function getText(){
+    public function getText()
+    {
         return $this -> text;
     }
 
-    public function getIsCorrect(){
+    public function getIsCorrect()
+    {
         return $this -> isCorrect;
     }
 
     //-----------------------Mutateurs--------------------------
 
-    public function setText(string$text){
+    public function setText(string $text)
+    {
         $this -> text = $text;
     }
 
-    public function setIsCorrect(bool $isCorrect){
+    public function setIsCorrect(bool $isCorrect)
+    {
         $this -> isCorrect = $isCorrect;
     }
 }
-
