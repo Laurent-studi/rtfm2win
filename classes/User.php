@@ -2,7 +2,7 @@
 // Déclaration d'encodage UTF-8
 header('Content-Type: text/html; charset=utf-8');
 
-class User {
+class users {
     //-----------------------Attributs--------------------------
     private string $username;
     private string $password;
@@ -20,7 +20,7 @@ class User {
         return $this -> username;
     }
 
-    public function getPasseword():string{
+    public function getPassword():string{
         return $this -> password;
     }
 
@@ -58,8 +58,8 @@ class User {
         $this -> username = $username;
     }
 
-    public function setpasseword(string $password){
-        $this -> password = $password;
+    public function setPassword(string $password){
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     public function setEmail(string $email){
@@ -86,7 +86,7 @@ class User {
         $this -> createdAt = $createdAt;
     }
 
-    public function updatedAt(DateTime $updatedAt){
+    public function setUpdatedAt(DateTime $updatedAt){
         $this -> updatedAt = $updatedAt;
     }
 }
