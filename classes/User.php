@@ -1,9 +1,14 @@
 <?php
 
 namespace Rtfm2win;
+use DateTime;
+
+
 
 // Déclaration d'encodage UTF-8
 header('Content-Type: text/html; charset=utf-8');
+
+
 
 class User
 {
@@ -67,7 +72,7 @@ class User
 
     //-----------------------Mutateurs--------------------------
 
-    public function setUsername(string $username)
+    public function setUserName(string $username)
     {
         $this -> username = $username;
     }
@@ -111,4 +116,38 @@ class User
     {
         $this -> updatedAt = $updatedAt;
     }
+
+
+//-------------------------------------------------
+//methode save() manquante a créé ici
+    public function save()
+    {
+        // Connexion à la base de données
+        require_once __DIR__ . '/../config/database.php';
+
+
+        // Préparation de la requête d'insertion
+        $stmt = $this->prepare("INSERT INTO user (username, password, email, role, avatar_url, token, token_Expires_At, created_At, updated_At) VALUES (:username, :password, :email, :role, :avatarUrl, :token, :tokenExpiresAt, :createdAt, :updatedAt)");
+
+        // Liaison des paramètres
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':password', $this->password);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':role', $this->role);
+        $stmt->bindParam(':avatarUrl', $this->avatarUrl);
+        $stmt->bindParam(':token', $this->token);
+        $stmt->bindParam(':tokenExpiresAt', $this->tokenExpiresAt->format('Y-m-d H:i:s'));
+        $stmt->bindParam(':createdAt', $this->createdAt->format('Y-m-d H:i:s'));
+        $stmt->bindParam(':updatedAt', $this->updatedAt->format('Y-m-d H:i:s'));
+
+        // Exécution de la requête
+        if ($stmt->execute()) {
+            return (int) $db->lastInsertId();
+        } else {
+            throw new \Exception("Erreur lors de l'enregistrement de l'utilisateur");
+        }
+    }
+
 }
+
+
