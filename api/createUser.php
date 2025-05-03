@@ -48,11 +48,11 @@ if (strlen($password) < 8) {
     exit;
 }
 // Validation du format pseudo
-/* if (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
+if (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
     http_response_code(400);
     echo json_encode(['error' => 'Le pseudo doit contenir entre 3 et 20 caractères.']);
     exit;
-} */
+}
 
 // appel de la classe User + creation nouvelle objet
 
