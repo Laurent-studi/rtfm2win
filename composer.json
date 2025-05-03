@@ -4,9 +4,11 @@
   "type": "project",
   "license": "MIT",
   "require": {
+
     "php": "^8.0",
     "ext-pdo": "*",
     "vlucas/phpdotenv": "^5.5"
+
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0"
