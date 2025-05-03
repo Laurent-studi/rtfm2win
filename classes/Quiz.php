@@ -58,6 +58,8 @@ class Quiz
 
     public function setTitle(string $title)
     {
+        $secureTitle = new Security;
+        $title = $secureTitle -> cleanData($title);
         $this -> title = $title;
     }
 
@@ -78,6 +80,8 @@ class Quiz
 
     public function setBasePoints(int $basePoints)
     {
+        $secureBasePoints = new Security;
+        $basePoints = $secureBasePoints -> cleanData($basePoints);
         $this -> basePoints = $basePoints;
     }
 

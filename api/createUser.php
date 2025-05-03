@@ -78,4 +78,3 @@ try {
     echo json_encode(['error' => 'Erreur lors de la création de l\'utilisateur : ' . $e->getMessage()]);
     exit;
 }
-
