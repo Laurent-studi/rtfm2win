@@ -1,9 +1,8 @@
 <?php
 
 namespace Rtfm2win;
+
 use DateTime;
-
-
 
 // Déclaration d'encodage UTF-8
 header('Content-Type: text/html; charset=utf-8');
@@ -17,7 +16,7 @@ class User
     private string $password;
     private string $email;
     private string $role = 'PLAYER';
-    private string $avatarUrl ='';
+    private string $avatarUrl = '';
     private string $token;
     private DateTime $tokenExpiresAt;
     private DateTime $createdAt;
@@ -83,7 +82,7 @@ class User
 
     public function setUserName(string $username)
     {
-        $secureUserName = new Security;
+        $secureUserName = new Security();
 //        $username = $secureUserName -> cleanData($username);
         $this -> username = $username;
     }
@@ -167,4 +166,3 @@ class User
         }
     }
 }
-

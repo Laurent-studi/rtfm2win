@@ -1,20 +1,17 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // API pour créer un utilisateur
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-
 //namespace user
 use Rtfm2win\User;
 use Rtfm2win\config;
-
 // Autloload
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../classes/User.php';
-
-
 // verification de la méthode utilisée
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -28,7 +25,6 @@ $data = json_decode(file_get_contents('php://input'), true);
 $pseudo = $data['pseudo'] ?? null;
 $email = $data['email'] ?? null;
 $password = $data['password'] ?? null;
-
 // validation d'entrée des données
 if (empty($pseudo) || empty($email) || empty($password)) {
     http_response_code(400);
@@ -61,7 +57,7 @@ try {
     $user->setUserName($pseudo);
     $user->setEmail($email);
     $user->setPassword($password);
-    //$newUser = $user->save();
+//$newUser = $user->save();
 
     echo json_encode([
         'success' => true,
@@ -78,4 +74,3 @@ try {
     echo json_encode(['error' => 'Erreur lors de la création de l\'utilisateur : ' . $e->getMessage()]);
     exit;
 }
-

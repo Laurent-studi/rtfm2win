@@ -42,4 +42,3 @@ include_once 'pages/index.html';
 //$usertest->setPassword('testpw');
 //echo $usertest->getUserName();
 //echo $usertest->getPassword();
-
