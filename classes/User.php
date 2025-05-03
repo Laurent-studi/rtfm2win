@@ -84,7 +84,7 @@ class User
     public function setUserName(string $username)
     {
         $secureUserName = new Security;
-        $username = $secureUserName -> cleanData($username);
+//        $username = $secureUserName -> cleanData($username);
         $this -> username = $username;
     }
 
