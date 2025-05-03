@@ -23,6 +23,15 @@ class User
     private DateTime $createdAt;
     private DateTime $updatedAt;
 
+    private $pdo;
+    //-----------------------Constructeur--------------------------
+    public function __construct()
+    {
+        $this->pdo = include __DIR__ . '/../config/database.php';
+        if (!$this->pdo) {
+            throw new \Exception("Erreur : Impossible d'établir une connexion à la base de données.");
+        }
+    }
 
     //-----------------------Accesseurs--------------------------
     public function getUserName(): string
@@ -125,29 +134,37 @@ class User
         // Connexion à la base de données
         require_once __DIR__ . '/../config/database.php';
 
+        // Vérification de la connexion
+        global $pdo;
 
         // Préparation de la requête d'insertion
-        $stmt = $this->prepare("INSERT INTO user (username, password, email, role, avatar_url, token, token_Expires_At, created_At, updated_At) VALUES (:username, :password, :email, :role, :avatarUrl, :token, :tokenExpiresAt, :createdAt, :updatedAt)");
+        $stmt = $pdo->prepare("INSERT INTO user (username, password, email, role, avatar_url, token, token_Expires_At, created_At, updated_At) 
+                          VALUES (:username, :password, :email, :role, :avatarUrl, :token, :tokenExpiresAt, :createdAt, :updatedAt)");
+
+        // Initialisation des dates
+        $now = new DateTime();
+        $this->createdAt = $now;
+        $this->updatedAt = $now;
+        $this->tokenExpiresAt = (clone $now)->modify('+1 day');
+        $this->token = bin2hex(random_bytes(16));
 
         // Liaison des paramètres
-        $stmt->bindParam(':username', $this->username);
-        $stmt->bindParam(':password', $this->password);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':role', $this->role);
-        $stmt->bindParam(':avatarUrl', $this->avatarUrl);
-        $stmt->bindParam(':token', $this->token);
-        $stmt->bindParam(':tokenExpiresAt', $this->tokenExpiresAt->format('Y-m-d H:i:s'));
-        $stmt->bindParam(':createdAt', $this->createdAt->format('Y-m-d H:i:s'));
-        $stmt->bindParam(':updatedAt', $this->updatedAt->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':username', $this->username);
+        $stmt->bindValue(':password', $this->password);
+        $stmt->bindValue(':email', $this->email);
+        $stmt->bindValue(':role', $this->role);
+        $stmt->bindValue(':avatarUrl', $this->avatarUrl);
+        $stmt->bindValue(':token', $this->token);
+        $stmt->bindValue(':tokenExpiresAt', $this->tokenExpiresAt->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':createdAt', $this->createdAt->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':updatedAt', $this->updatedAt->format('Y-m-d H:i:s'));
 
         // Exécution de la requête
         if ($stmt->execute()) {
-            return (int) $db->lastInsertId();
+            return (int) $pdo->lastInsertId();
         } else {
             throw new \Exception("Erreur lors de l'enregistrement de l'utilisateur");
         }
     }
-
 }
-
 

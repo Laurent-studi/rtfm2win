@@ -1,13 +1,20 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // API pour créer un utilisateur
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-// Autloload
-require_once __DIR__ . '/composer/autoload.php';
 //namespace user
 use Rtfm2win\User;
+use Rtfm2win\config;
+
+// Autloload
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../classes/User.php';
+
 
 // verification de la méthode utilisée
 
@@ -51,7 +58,7 @@ if (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
 // appel de la classe User + creation nouvelle objet
 
 try {
-    $user = new User();
+    $user = new User(); // Suppression du passage de $pdo
     $user->setUserName($pseudo);
     $user->setEmail($email);
     $user->setPassword($password);
@@ -65,8 +72,6 @@ try {
     ]);
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Erreur lors de la création de l\'utilisateur.']);
+    echo json_encode(['error' => 'Erreur lors de la création de l\'utilisateur : ' . $e->getMessage()]);
     exit;
 }
-
-
