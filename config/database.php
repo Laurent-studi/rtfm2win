@@ -76,4 +76,3 @@ if (!$pdo instanceof PDO) {
 }
 
 return $pdo;
-
