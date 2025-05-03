@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTFM2Win/Creation de Quiz</title>
+</head>
+<body>
+    <form action="../api/createQuiz.php" method="post">
+        <label for="title">Choissisez un titre de quiz :</label>
+        <input type="text" name="title" id="title">
+        <label for="basePoint">Points par question : </label>
+        <input type="number" name="basePoint" id="basePoint" value="3000">
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>

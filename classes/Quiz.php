@@ -18,6 +18,17 @@ class Quiz
     private bool $splitPoints = true;
     private float $timeDeduction;  //Nécessaire? pas noter modifiable dans le CDC !!
 
+    private $pdo;
+
+    //-----------------------Constructeur--------------------------
+
+    public function __construct()
+    {
+        $this->pdo = include __DIR__ . '/../config/database.php';
+        if (!$this->pdo) {
+            throw new \Exception("Erreur : Impossible d'établir une connexion à la base de données.");
+        }
+    }
     //-----------------------Accesseurs--------------------------
     public function getTitle()
     {
@@ -78,7 +89,7 @@ class Quiz
         $this -> createdAt = $createdAt;
     }
 
-    public function setBasePoints(int $basePoints)
+    public function setBasePoints($basePoints)
     {
         $secureBasePoints = new Security;
         $basePoints = $secureBasePoints -> cleanIntData($basePoints);
@@ -93,5 +104,37 @@ class Quiz
     public function setTimeDeduction(float $timeDeduction)
     {
         $this -> timeDeduction = $timeDeduction;
+    }
+
+    //-----------------------------
+    public function save()
+    {
+        if (!$this->pdo instanceof \PDO) {
+            throw new \Exception("Erreur : La connexion PDO n'est pas valide.");
+        }
+
+        // Utilisation de la connexion PDO de l'attribut $this->pdo
+        $stmt = $this->pdo->prepare("INSERT INTO quiz (title, link, qrCode, createdAt, basePoints, splitPoints) 
+                        VALUES (:title, :link, :qrCode, :createdAt, :basePoints, :splitPoints)");
+
+        // Initialisation des dates
+        $now = new DateTime();
+        $this->createdAt = $now;        
+
+        // Liaison des paramètres
+        $stmt->bindValue(':title', $this->title);
+        $stmt->bindValue(':link', $this->link);
+        $stmt->bindValue(':qrCode', $this->qrCode);
+        $stmt->bindValue(':createdAt', $this->createdAt);
+        $stmt->bindValue(':basePoints', $this->basePoints);
+        $stmt->bindValue(':splitPoints', $this->splitPoints);
+        
+
+        // Exécution de la requête
+        if ($stmt->execute()) {
+            return (int) $this->pdo->lastInsertId();
+        } else {
+            throw new \Exception("Erreur lors de l'enregistrement de l'utilisateur");
+        }
     }
 }
