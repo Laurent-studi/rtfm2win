@@ -17,7 +17,7 @@ class User
     private string $password;
     private string $email;
     private string $role = 'PLAYER';
-    private string $avatarUrl;
+    private string $avatarUrl ='';
     private string $token;
     private DateTime $tokenExpiresAt;
     private DateTime $createdAt;
