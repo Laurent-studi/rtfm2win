@@ -4,6 +4,7 @@ namespace Rtfm2win\config;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+
 use Dotenv\Dotenv;
 use PDO;
 use PDOException;
@@ -66,4 +67,13 @@ try {
         " (Code : " . $e->getCode() . ")");
 }
 
+if (!$pdo) {
+    throw new \Exception("Erreur : La connexion PDO n'a pas pu être établie.");
+}
+
+if (!$pdo instanceof PDO) {
+    throw new \Exception("Erreur : La connexion PDO n'a pas pu être établie.");
+}
+
 return $pdo;
+
