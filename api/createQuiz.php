@@ -24,23 +24,26 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// Récupération des données JSON du frontend
 $data = json_decode(file_get_contents('php://input'), true);
 $title = $data['title'] ?? null;
-$basePoint = $data['basePoint'] ?? 3000;
-$splitPoints = $data['splitPoints'] ?? true;
+$basePoint = $data['basePoint'] ;
+$splitPoints = $data['splitPoints'] ;
 
+
+// appel de la classe quiz + creation nouvelle objet
 try {
-    $quiz = new Quiz();
+    $quiz = new Quiz(); 
     $quiz->setTitle($title);
     $quiz->setBasePoints($basePoint);
     $quiz->setSplitPoints($splitPoints);
     
 
     echo json_encode([
-        'success' => true,
-        'title' => $title,
-        'basePoint' => $basePoint->getBasePoints(),
-        'splitPoints' => $splitPoints->getSplitPoints(),
+        
+        'title' => $quiz->getTitle(),
+        'basePoints' => $quiz->getBasePoints(),
+        'splitPoints' => $quiz->getSplitPoints(),
     ]);
 } catch (\PDOException $e) {
     http_response_code(500);
