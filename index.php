@@ -1,5 +1,4 @@
 <?php
-
 // Activer l'affichage des erreurs pour le débogage <- a retirer en prod
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
