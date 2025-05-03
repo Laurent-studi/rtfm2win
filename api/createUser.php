@@ -12,7 +12,6 @@ use Rtfm2win\config;
 
 // Autloload
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../classes/User.php';
 
 
@@ -49,20 +48,20 @@ if (strlen($password) < 8) {
     exit;
 }
 // Validation du format pseudo
-if (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
+/* if (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
     http_response_code(400);
     echo json_encode(['error' => 'Le pseudo doit contenir entre 3 et 20 caractères.']);
     exit;
-}
+} */
 
 // appel de la classe User + creation nouvelle objet
 
 try {
-    $user = new User(); // Suppression du passage de $pdo
+    $user = new User();
     $user->setUserName($pseudo);
     $user->setEmail($email);
     $user->setPassword($password);
-    $newUser = $user->save();
+    //$newUser = $user->save();
 
     echo json_encode([
         'success' => true,
@@ -70,8 +69,13 @@ try {
         'pseudo' => $user->getUserName(),
         'email' => $user->getEmail()
     ]);
-} catch (Exception $e) {
+} catch (\PDOException $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Erreur de base de données : ' . $e->getMessage()]);
+    exit;
+} catch (\Exception $e) {
     http_response_code(500);
     echo json_encode(['error' => 'Erreur lors de la création de l\'utilisateur : ' . $e->getMessage()]);
     exit;
 }
+
