@@ -141,7 +141,7 @@ class User
 
         // Préparation de la requête d'insertion
         $stmt = $pdo->prepare("INSERT INTO user (username, password, email, role, avatar_url, token, token_Expires_At, created_At, updated_At) 
-                          VALUES (:username, :password, :email, :role, :avatarUrl, :token, :tokenExpiresAt, :createdAt, :updatedAt)");
+                        VALUES (:username, :password, :email, :role, :avatarUrl, :token, :tokenExpiresAt, :createdAt, :updatedAt)");
 
         // Initialisation des dates
         $now = new DateTime();
