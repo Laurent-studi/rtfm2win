@@ -26,7 +26,12 @@ try {
     die("Erreur : " . $e->getMessage());
 }
 
+// Vérifiez si le script actuel est directement appelé
+if (php_sapi_name() !== 'cli-server' && isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/api/') === 0) {
+    return false; // Laissez le serveur traiter directement les fichiers dans /api/
+}
 
+// Inclure la page index.html
 include_once 'pages/index.html';
 
 // Test des classes
@@ -37,3 +42,4 @@ include_once 'pages/index.html';
 //$usertest->setPassword('testpw');
 //echo $usertest->getUserName();
 //echo $usertest->getPassword();
+

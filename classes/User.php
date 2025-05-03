@@ -84,7 +84,7 @@ class User
     public function setUserName(string $username)
     {
         $secureUserName = new Security;
-        $username = $secureUserName -> cleanData($username);
+//        $username = $secureUserName -> cleanData($username);
         $this -> username = $username;
     }
 
@@ -133,14 +133,12 @@ class User
 //methode save() manquante a créé ici
     public function save()
     {
-        // Connexion à la base de données
-        require_once __DIR__ . '/../config/database.php';
+        if (!$this->pdo instanceof \PDO) {
+            throw new \Exception("Erreur : La connexion PDO n'est pas valide.");
+        }
 
-        // Vérification de la connexion
-        global $pdo;
-
-        // Préparation de la requête d'insertion
-        $stmt = $pdo->prepare("INSERT INTO user (username, password, email, role, avatar_url, token, token_Expires_At, created_At, updated_At) 
+        // Utilisation de la connexion PDO de l'attribut $this->pdo
+        $stmt = $this->pdo->prepare("INSERT INTO user (username, password, email, role, avatar_url, token, token_Expires_At, created_At, updated_At) 
                         VALUES (:username, :password, :email, :role, :avatarUrl, :token, :tokenExpiresAt, :createdAt, :updatedAt)");
 
         // Initialisation des dates
@@ -163,7 +161,7 @@ class User
 
         // Exécution de la requête
         if ($stmt->execute()) {
-            return (int) $pdo->lastInsertId();
+            return (int) $this->pdo->lastInsertId();
         } else {
             throw new \Exception("Erreur lors de l'enregistrement de l'utilisateur");
         }

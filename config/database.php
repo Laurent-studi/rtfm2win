@@ -71,5 +71,9 @@ if (!$pdo) {
     throw new \Exception("Erreur : La connexion PDO n'a pas pu être établie.");
 }
 
+if (!$pdo instanceof PDO) {
+    throw new \Exception("Erreur : La connexion PDO n'a pas pu être établie.");
+}
+
 return $pdo;
 
