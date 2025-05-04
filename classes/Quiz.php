@@ -75,6 +75,9 @@ class Quiz
 
     public function setBasePoints(int $basePoints)
     {
+        $secureBasePoints = new Security;
+        $basePoints = $secureBasePoints->cleanData($basePoints);
+        $basePoints = $secureBasePoints->cleanIntData($basePoints);
         $this -> basePoints = $basePoints;
     }
 
