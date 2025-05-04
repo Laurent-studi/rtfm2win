@@ -29,7 +29,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 // on applique la valeur null si la valeur title est vide.
 $title = $data['title'] ?? null;
 // on applique la valeur par défaut de 3000 points si la valeur n'est pas renseigner.
-$basePoint = $data['basePoint'] ?? 3000;
+$basePoint = $data['basePoints'] ?? 3000;
 // on applique l'état par défaut si la valeur n'est pas modifier par l'utilisateur.
 $splitPoints = $data['splitPoints'] ?? true;
 

@@ -11,12 +11,13 @@ class Security
     // Fonction pour néttoyer les données.
     public function cleanData($data)
     {
-        // On commence par retiré les espaces avant et apres la donnée
-        $data = trim($data);
+        
         // On supprime les back-slash afin de prévenir l'échappement de caratère spéciaux.
         $data = stripslashes($data);
         // On retire les balises qui pourrais etre entré dans la variable $data.
         $data = strip_tags($data);
+        // On commence par retiré les espaces avant et apres la donnée
+        $data = trim($data);
         // On return notre data une fois néttoyer.
         return $data;
     }
