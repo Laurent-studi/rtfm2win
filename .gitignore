@@ -1,0 +1,186 @@
+### Composer ###
+/.idea/
+.env
+composer.phar
+/vendor/
+/private_/
+# Versionnez le fichier lock de votre application https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
+# Vous pouvez choisir d'ignorer un fichier lock de bibliothèque http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
+
+### JetBrains ###
+# Couvre les IDE JetBrains : IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm et Rider
+# Référence : https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# Fichiers spécifiques à l’utilisateur
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Spécifique à AWS
+.idea/**/aws.xml
+
+# Fichiers générés
+.idea/**/contentModel.xml
+
+# Fichiers sensibles ou à forte usure
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# Gradle et Maven avec importation automatique
+# Lors de l'utilisation de Gradle ou Maven avec importation automatique, vous devriez exclure les fichiers de modules,
+# car ils seront recréés et peuvent provoquer du churn. Décommentez si vous utilisez l'importation automatique.
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
+
+# CMake
+cmake-build-*/
+
+# Plugin Mongo Explorer
+.idea/**/mongoSettings.xml
+
+# Format de projet basé sur des fichiers
+*.iws
+
+# IntelliJ
+out/
+
+# Plugin mpeltonen/sbt-idea
+.idea_modules/
+
+# Plugin JIRA
+atlassian-ide-plugin.xml
+
+# Plugin Cursive Clojure
+.idea/replstate.xml
+
+# Plugin SonarLint
+.idea/**/sonarlint/
+
+# Plugin Crashlytics (pour Android Studio et IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Client REST intégré à l’éditeur
+.idea/httpRequests
+
+# Fichier de cache sérialisé Android Studio 3.1+
+.idea/caches/build_file_checksums.ser
+
+### Patch JetBrains ###
+# Raison du commentaire : https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+# *.iml
+# modules.xml
+# .idea/misc.xml
+# *.ipr
+
+# Plugin SonarLint
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
+.idea/**/sonarlint/
+
+# Plugin SonarQube
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+.idea/**/sonarIssues.xml
+
+# Plugin Markdown Navigator
+# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/markdown-navigator/
+
+# Bug de création de fichier de cache
+# Voir https://youtrack.jetbrains.com/issue/JBR-2257
+.idea/$CACHE_FILE$
+
+# Plugin CodeStream
+# https://plugins.jetbrains.com/plugin/12206-codestream
+.idea/codestream.xml
+
+# Plugin Azure Toolkit pour IntelliJ
+# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
+.idea/**/azureSettings.xml
+
+### PhpStorm ###
+# Couvre les IDE JetBrains : IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm et Rider
+# Référence : https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# Fichiers spécifiques à l’utilisateur
+
+# Spécifique à AWS
+
+# Fichiers générés
+
+# Fichiers sensibles ou à forte usure
+
+# Gradle
+
+# Gradle et Maven avec importation automatique
+
+# CMake
+
+# Plugin Mongo Explorer
+
+# Format de projet basé sur des fichiers
+
+# IntelliJ
+
+# Plugin mpeltonen/sbt-idea
+
+# Plugin JIRA
+
+# Plugin Cursive Clojure
+
+# Plugin SonarLint
+
+# Plugin Crashlytics (pour Android Studio et IntelliJ)
+
+# Client REST intégré à l’éditeur
+
+# Fichier de cache sérialisé Android Studio 3.1+
+
+### Patch PhpStorm ###
+# Raison du commentaire : https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+# *.iml
+# modules.xml
+# .idea/misc.xml
+# *.ipr
+
+# Plugin SonarLint
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
+
+# Plugin SonarQube
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+
+# Plugin Markdown Navigator
+# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
+
+# Bug de création de fichier de cache
+# Voir https://youtrack.jetbrains.com/issue/JBR-2257
+
+# Plugin CodeStream
+# https://plugins.jetbrains.com/plugin/12206-codestream
+
+# Plugin Azure Toolkit pour IntelliJ
+# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
+
