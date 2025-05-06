@@ -9,9 +9,16 @@
     <form action="../api/createQuiz.php" method="post">
         <label for="title">Choissisez un titre de quiz :</label>
         <input type="text" name="title" id="title">
-        <label for="basePoint">Points par question : </label>
-        <input type="number" name="basePoint" id="basePoint" value="3000">
+        <label for="basePoints">Points par question : </label>
+        <input type="number" name="basePoints" id="basePoints" value="3000">
+        
+        <label for="splitPoints">Désactiver la division des points par reponse en cas de réponse multiple</label>
+        <input type="checkbox" name="splitPoints" id="splitPoint">
+        <label for="maxTimes">Temps max par question en seconde</label>
+        <input type="number" name="maxTimes" id="maxTimes" value="30">
+
         <button type="submit">Envoyer</button>
+
     </form>
 </body>
 </html>

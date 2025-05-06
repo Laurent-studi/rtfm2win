@@ -2,18 +2,21 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-// API pour créer un utilisateur
+// API pour créer un quiz
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-//namespace user
+//namespace
+
 use Rtfm2win\Quiz;
+use Rtfm2win\Security;
 use Rtfm2win\QuizQuestion;
 
 
 
 
 // Autloload
+
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../classes/Quiz.php';
 
@@ -27,13 +30,60 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Récupération des données JSON du frontend
+
 $data = json_decode(file_get_contents('php://input'), true);
+$data = $_POST;
 // on applique la valeur null si la valeur title est vide.
-$title = $data['title'] ?? null;
+$title = $data['title'];
 // on applique la valeur par défaut de 3000 points si la valeur n'est pas renseigner.
 $basePoint = $data['basePoints'] ?? 3000;
 // on applique l'état par défaut si la valeur n'est pas modifier par l'utilisateur.
 $splitPoints = $data['splitPoints'] ?? true;
+// on applique la valeur par défaut de 30 seconde si la valeur n'est pas renseigner.
+$maxTimes = $data['maxTimes'] ?? 30;
+
+//Vérification de sécuriter de la variable title
+function securTitle ($data){
+    $secureData =new Security();
+    $data = $secureData->cleanData($data);
+    return $data;
+}
+// Validation d'entrée du titre de quiz
+
+if (empty($title)) {
+    
+    echo json_encode(['error' => 'Le titre du quiz doit etre renseigné']);
+    exit;
+    
+}else if ($title != securTitle($title)){
+    echo json_encode(['error' => 'Merci de ne pas vouloir hacker le site via ce quiz']);
+    exit;    
+}
+
+// Validation du format title
+
+if (strlen($title) < 10 || strlen($title) > 50) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Le titre doit contenir entre 10 et 50 caractères.']);
+    
+}
+
+// Validation du max de points par question
+
+if ($basePoint < 1500) {
+    http_response_code(400);
+    echo json_encode(['error' => 'La valeur de Point par question ne peut être inférieure à 1500 pour des raisons de jouabilité. <br>La valeur par défaut de 3 000 points sera donc utiliser.']);
+    $basePoint = 3000;
+
+}
+
+// Validation du temps par question
+
+if ($maxTimes < 15) {
+    http_response_code(400);
+    echo json_encode(['error' => 'la Valeur de temps par question ne peux etre inférieur à 15 secondes pour des raisons de jouabilité. <br>La valeur par défaut de 30 seconde sera utiliser.']);
+    $maxTimes = 30;    
+}
 
 
 
@@ -44,6 +94,9 @@ try {
     $quiz->setTitle($title);
     $quiz->setBasePoints($basePoint);
     $quiz->setSplitPoints($splitPoints);
+
+    $tempsQuiz = new QuizQuestion();
+    $tempsQuiz->setMaxTime($maxTimes);
     
 
     echo json_encode([
@@ -51,6 +104,7 @@ try {
         'title' => $quiz->getTitle(),
         'basePoints' => $quiz->getBasePoints(),
         'splitPoints' => $quiz->getSplitPoints(),
+        'maxTimes' => $tempsQuiz->getMaxTime()
     ]);
 } catch (\PDOException $e) {
     http_response_code(500);
