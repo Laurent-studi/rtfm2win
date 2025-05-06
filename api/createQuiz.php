@@ -8,7 +8,9 @@ header('Access-Control-Allow-Origin: *');
 
 //namespace user
 use Rtfm2win\Quiz;
-use Rtfm2win\config;
+use Rtfm2win\QuizQuestion;
+
+
 
 
 // Autloload
