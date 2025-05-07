@@ -38,7 +38,7 @@ $title = $data['title'];
 // on applique la valeur par défaut de 3000 points si la valeur n'est pas renseigner.
 $basePoint = $data['basePoints'] ?? 3000;
 // on applique l'état par défaut si la valeur n'est pas modifier par l'utilisateur.
-$splitPoints = $data['splitPoints'] ?? true;
+$splitPoints = $data['splitPoints'] ?? 1;
 // on applique la valeur par défaut de 30 seconde si la valeur n'est pas renseigner.
 $maxTimes = $data['maxTimes'] ?? 30;
 
@@ -56,7 +56,7 @@ if (empty($title)) {
     exit;
     
 }else if ($title != securTitle($title)){
-    echo json_encode(['error' => 'Merci de ne pas vouloir hacker le site via ce quiz']);
+    echo json_encode(['error' => 'Attention toute tentative d\'injection via ce formulaire entraîne une attaque de la team aquaponey']);
     exit;    
 }
 
@@ -72,7 +72,7 @@ if (strlen($title) < 10 || strlen($title) > 50) {
 
 if ($basePoint < 1500) {
     http_response_code(400);
-    echo json_encode(['error' => 'La valeur de Point par question ne peut être inférieure à 1500 pour des raisons de jouabilité. <br>La valeur par défaut de 3 000 points sera donc utiliser.']);
+    echo json_encode(['Warning' => 'La valeur de Point par question ne peut être inférieure à 1500 pour des raisons de jouabilité. <br>La valeur par défaut de 3 000 points sera donc utiliser.']);
     $basePoint = 3000;
 
 }
@@ -81,8 +81,14 @@ if ($basePoint < 1500) {
 
 if ($maxTimes < 15) {
     http_response_code(400);
-    echo json_encode(['error' => 'la Valeur de temps par question ne peux etre inférieur à 15 secondes pour des raisons de jouabilité. <br>La valeur par défaut de 30 seconde sera utiliser.']);
+    echo json_encode(['Warning' => 'la Valeur de temps par question ne peux etre inférieur à 15 secondes pour des raisons de jouabilité. <br>La valeur par défaut de 30 seconde sera utiliser.']);
     $maxTimes = 30;    
+}
+
+if($splitPoints == 'true'){
+    $splitPoints = 1;
+}else{
+    $splitPoints = 0;
 }
 
 
@@ -97,6 +103,8 @@ try {
 
     $tempsQuiz = new QuizQuestion();
     $tempsQuiz->setMaxTime($maxTimes);
+
+    $newQuiz = $quiz->saveQuiz();
     
 
     echo json_encode([
@@ -111,6 +119,7 @@ try {
     echo json_encode(['error' => 'Erreur de base de données : ' . $e->getMessage()]);
     exit;
 } catch (\Exception $e) {
+    
     http_response_code(500);
     echo json_encode(['error' => 'Erreur lors de la création du quiz : ' . $e->getMessage()]);
     exit;
