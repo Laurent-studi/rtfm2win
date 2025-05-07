@@ -11,6 +11,10 @@ export class User {
     //si c'est vrai, attribue l'id du back dans notre class User.(plus tard)
     //rejoindre la partie
 
+    // Fonction pour attribuer valeur donné dans une variable
+    set_id(id) {
+        this.id = id;
+    }
 }
 
 let remi = new User(true);
