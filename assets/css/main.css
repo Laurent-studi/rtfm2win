@@ -1,0 +1,11 @@
+input[type="text"].validPseudo{
+    border: 1px solid green;
+    border-radius: 2px;
+    color : green;
+}
+
+input[type="text"].invalidPseudo{
+    border: 1px solid red;
+    border-radius: 2px;
+    color : red;
+}
