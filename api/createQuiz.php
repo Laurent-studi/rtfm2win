@@ -12,14 +12,10 @@ use Rtfm2win\Quiz;
 use Rtfm2win\Security;
 use Rtfm2win\QuizQuestion;
 
-
-
-
 // Autloload
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../classes/Quiz.php';
-
 
 // verification de la méthode utilisée
 
@@ -33,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 $data = $_POST;
-// on applique la valeur null si la valeur title est vide.
+
+
 $title = $data['title'];
 // on applique la valeur par défaut de 3000 points si la valeur n'est pas renseigner.
 $basePoint = $data['basePoints'] ?? 3000;
@@ -64,8 +61,7 @@ if (empty($title)) {
 
 if (strlen($title) < 10 || strlen($title) > 50) {
     http_response_code(400);
-    echo json_encode(['error' => 'Le titre doit contenir entre 10 et 50 caractères.']);
-    
+    echo json_encode(['error' => 'Le titre doit contenir entre 10 et 50 caractères.']);    
 }
 
 // Validation du max de points par question
@@ -74,7 +70,6 @@ if ($basePoint < 1500) {
     http_response_code(400);
     echo json_encode(['Warning' => 'La valeur de Point par question ne peut être inférieure à 1500 pour des raisons de jouabilité. <br>La valeur par défaut de 3 000 points sera donc utiliser.']);
     $basePoint = 3000;
-
 }
 
 // Validation du temps par question
@@ -85,16 +80,16 @@ if ($maxTimes < 15) {
     $maxTimes = 30;    
 }
 
-if($splitPoints == 'true'){
-    $splitPoints = 1;
-}else{
+// Modification de la valeur du chekbox en int pour la bdd
+
+if ($splitPoints == '0'){
     $splitPoints = 0;
+}else {
+    $splitPoints =1;
 }
 
-
-
-
 // appel de la classe quiz + creation nouvelle objet
+
 try {
     $quiz = new Quiz(); 
     $quiz->setTitle($title);
@@ -104,8 +99,7 @@ try {
     $tempsQuiz = new QuizQuestion();
     $tempsQuiz->setMaxTime($maxTimes);
 
-    $newQuiz = $quiz->saveQuiz();
-    
+    $newQuiz = $quiz->saveQuiz();    
 
     echo json_encode([
         
@@ -124,4 +118,6 @@ try {
     echo json_encode(['error' => 'Erreur lors de la création du quiz : ' . $e->getMessage()]);
     exit;
 }
+
+
 

@@ -10,6 +10,7 @@ header('Content-Type: text/html; charset=utf-8');
 class Quiz
 {
     //-----------------------Attributs--------------------------
+    
     private string $title;
     private string $link = 'test link';
     private string $qrCode = '';
@@ -112,7 +113,8 @@ public function saveQuiz()
     
     
     // Liaison des paramètres
-    $stmt->bindValue(':user_id', 1);
+    
+    //$stmt->bindValue(':user_id', 1);
     $stmt->bindValue(':title', $this->title);
     $stmt->bindValue(':unique_link', $this->link);
     $stmt->bindValue(':qr_code', $this->qrCode);
